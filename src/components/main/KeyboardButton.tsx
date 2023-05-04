@@ -8,7 +8,7 @@ interface Props {
 
 const KeyboardButton: React.FC<Props> = ({onPress, children}) => {
   return (
-    <TouchableOpacity onPress={onPress} style={styles.button}>
+    <TouchableOpacity onPressIn={onPress} style={styles.button}>
       {children}
     </TouchableOpacity>
   );
@@ -25,11 +25,11 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.5,
     shadowRadius: 5,
+    elevation: 5,
     justifyContent: 'center',
     alignItems: 'center',
     width: 60,
     height: 60,
-    elevation: 5,
   },
 });
 
