@@ -1,15 +1,16 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
-import CardField from '../common/CardField';
+import CardField from './CardField';
 import Card from '../types/Card';
 
 interface Props {
   cards: Card[];
   index: number;
+  active: boolean;
   setIndex?: (index: number) => void;
 }
 
-const SelectedCards: React.FC<Props> = ({cards, index, setIndex}) => {
+const SelectedCards: React.FC<Props> = ({cards, index, active, setIndex}) => {
   return (
     <View style={styles.container}>
       {cards.map((card, i) => (
@@ -17,7 +18,7 @@ const SelectedCards: React.FC<Props> = ({cards, index, setIndex}) => {
           onPress={() => setIndex && setIndex(i)}
           key={i}
           card={card}
-          highlight={i === index}
+          highlight={i === index && active}
         />
       ))}
     </View>
