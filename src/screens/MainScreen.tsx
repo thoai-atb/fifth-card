@@ -12,6 +12,14 @@ import Card, {
 } from '../components/types/Card';
 import {fifthCardCompute} from '../utils/fifthCardComputer';
 import FifthCardDisplay from '../components/main/FifthCardDisplay';
+import Sound from 'react-native-sound';
+
+const sound = new Sound('click.wav', Sound.MAIN_BUNDLE, error => {
+  if (error) {
+    console.log('failed to load the sound', error);
+    return;
+  }
+});
 
 const MainScreen: React.FC = () => {
   const [selectedInputIndex, setSelectedInputIndex] = useState<number>(0);
@@ -23,6 +31,13 @@ const MainScreen: React.FC = () => {
     emptyCard(),
     emptyCard(),
   ]);
+
+  const playSound = () => {
+    sound.setVolume(0.1);
+    sound.setPitch(1.5);
+    sound.stop();
+    sound.play();
+  };
 
   // Time to compute the fifth card!
   useEffect(() => {
@@ -42,6 +57,7 @@ const MainScreen: React.FC = () => {
 
   // Restart
   function handleRestart() {
+    playSound();
     setCards([emptyCard(), emptyCard(), emptyCard(), emptyCard()]);
     setFifthCard(undefined);
     setSelectedInputIndex(0);
@@ -49,6 +65,10 @@ const MainScreen: React.FC = () => {
 
   // Keyboard event
   function handlePress(isSuit: boolean, data: string) {
+    if (fifthCard) {
+      return;
+    }
+    playSound();
     var nextCard: boolean = false;
     var lastCard: boolean = false;
     setCards(oldCards =>
@@ -58,9 +78,16 @@ const MainScreen: React.FC = () => {
         }
         const newCard = isSuit ? {...card, suit: data} : {...card, value: data};
         if (checkCardValid(newCard)) {
-          if (selectedInputIndex === oldCards.length - 1) {
+          if (
+            oldCards.every(
+              (c, j) => j === selectedInputIndex || checkCardValid(c),
+            )
+          ) {
             lastCard = true;
-          } else if (checkCardEmpty(oldCards[selectedInputIndex + 1])) {
+          } else if (
+            selectedInputIndex !== oldCards.length - 1 &&
+            checkCardEmpty(oldCards[selectedInputIndex + 1])
+          ) {
             nextCard = true;
           }
           if (lastCard) {

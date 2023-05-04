@@ -8,7 +8,7 @@ interface Props {
 
 const KeyboardButton: React.FC<Props> = ({onPress, children}) => {
   return (
-    <TouchableOpacity onPressIn={onPress} style={styles.button}>
+    <TouchableOpacity onPress={onPress} style={styles.button}>
       {children}
     </TouchableOpacity>
   );
