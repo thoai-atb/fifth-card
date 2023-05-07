@@ -1,0 +1,13 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "assets/fonts/NotoSansJP-Regular.ttf",
+      "sha1": "661ba743b050255f807febc8db843b31ddb211e8"
+    },
+    {
+      "path": "assets/fonts/NotoSansJP-VariableFont_wght.ttf",
+      "sha1": "99f01260f10f70ec3ecf4014655e73b25d2d89d8"
+    }
+  ]
+}

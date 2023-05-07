@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
   prompt: {
     textAlign: 'center',
     fontSize: 18,
+    color: 'black',
   },
   card: {
     padding: 10,
@@ -37,6 +38,7 @@ const styles = StyleSheet.create({
   },
   input: {
     fontSize: 75,
+    color: 'black',
     overflow: 'visible',
     textAlign: 'center',
     fontFamily: 'bicycle',

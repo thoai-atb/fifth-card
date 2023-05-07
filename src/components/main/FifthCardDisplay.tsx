@@ -31,20 +31,25 @@ const styles = StyleSheet.create({
   text: {
     textAlign: 'center',
     fontSize: 18,
+    color: 'black',
   },
   card: {
-    padding: 50,
+    padding: 30,
     borderWidth: 1,
-    margin: 30,
+    marginHorizontal: 30,
+    marginTop: 30,
+    marginBottom: 20,
     borderRadius: 12,
     borderColor: 'rgba(0, 0, 0, 0.1)',
   },
   cardText: {
     textAlign: 'center',
     fontSize: 50,
+    color: 'black',
+    fontFamily: 'NotoSansJP-Regular',
   },
   button: {
-    marginHorizontal: 40,
+    marginHorizontal: 30,
   },
   buttonText: {
     fontSize: 18,

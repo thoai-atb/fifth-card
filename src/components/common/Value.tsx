@@ -28,6 +28,8 @@ const Value: React.FC<{value: string}> = ({value}) => {
 const styles = StyleSheet.create({
   text: {
     fontSize: 25,
+    color: 'black',
+    fontFamily: 'NotoSansJP-Regular',
   },
 });
 

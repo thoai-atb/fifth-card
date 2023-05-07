@@ -19,6 +19,8 @@ const Suit: React.FC<{suit: string}> = ({suit}) => {
 const styles = StyleSheet.create({
   text: {
     fontSize: 25,
+    color: 'black',
+    fontFamily: 'NotoSansJP-Regular',
   },
 });
 

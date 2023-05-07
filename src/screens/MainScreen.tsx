@@ -13,6 +13,7 @@ import Card, {
 import {fifthCardCompute} from '../utils/fifthCardComputer';
 import FifthCardDisplay from '../components/main/FifthCardDisplay';
 import Sound from 'react-native-sound';
+import WaitingReveal from '../components/main/WaitingReveal';
 
 const sound = new Sound('click.wav', Sound.MAIN_BUNDLE, error => {
   if (error) {
@@ -23,6 +24,7 @@ const sound = new Sound('click.wav', Sound.MAIN_BUNDLE, error => {
 
 const MainScreen: React.FC = () => {
   const [selectedInputIndex, setSelectedInputIndex] = useState<number>(0);
+  const [revealCard, setRevealCard] = useState<boolean>(false);
   const [fifthCard, setFifthCard] = useState<Card | undefined>();
   const [computeCard, setComputeCard] = useState<boolean>(false);
   const [cards, setCards] = useState<Card[]>([
@@ -33,7 +35,7 @@ const MainScreen: React.FC = () => {
   ]);
 
   const playSound = () => {
-    sound.setVolume(0.1);
+    sound.setVolume(0.2);
     sound.setPitch(1.5);
     sound.stop();
     sound.play();
@@ -60,6 +62,7 @@ const MainScreen: React.FC = () => {
     playSound();
     setCards([emptyCard(), emptyCard(), emptyCard(), emptyCard()]);
     setFifthCard(undefined);
+    setRevealCard(false);
     setSelectedInputIndex(0);
   }
 
@@ -116,7 +119,10 @@ const MainScreen: React.FC = () => {
             index={selectedInputIndex}
           />
         )}
-        {fifthCard && (
+        {fifthCard && !revealCard && (
+          <WaitingReveal onReveal={() => setRevealCard(true)} />
+        )}
+        {fifthCard && revealCard && (
           <FifthCardDisplay
             card={convertCardToValidCard(fifthCard)}
             onRestart={handleRestart}
